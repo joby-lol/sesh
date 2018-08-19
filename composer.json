@@ -1,0 +1,31 @@
+{
+    "name": "byjoby/sesh",
+    "description": "Session management classes and traits",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joby Elliott",
+            "email": "joby@byjoby.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sesh\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sesh\\": "tests/"
+        }
+    },
+    "scripts": {
+      "test": [
+        "phpunit"
+      ]
+    }
+}
