@@ -1,0 +1,12 @@
+image:          php:7.1-alpine
+
+before_script:
+- apt-get update -yqq
+- apt-get install -yqq git
+- curl -sS https://getcomposer.org/installer | php
+- php composer.phar install
+
+test:
+  script:
+    - composer install
+    - composer test
