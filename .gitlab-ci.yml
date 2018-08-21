@@ -1,7 +1,7 @@
 image:          php:7.1-alpine
 
 before_script:
-- apk update 77 && \
+- apk update && \
   apk add git
 - curl -sS https://getcomposer.org/installer | php
 - php composer.phar install
