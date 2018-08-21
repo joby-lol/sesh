@@ -1,8 +1,8 @@
 image:          php:7.1-alpine
 
 before_script:
-- apt-get update -yqq
-- apt-get install -yqq git
+- apk update
+- apk install git
 - curl -sS https://getcomposer.org/installer | php
 - php composer.phar install
 
