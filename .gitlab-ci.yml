@@ -8,5 +8,4 @@ before_script:
 
 test:
   script:
-    - composer install
-    - composer test
+    - php composer.phar test
