@@ -37,11 +37,11 @@ class Session implements SessionInterface
     public static function &getInstance(string $uniqueID = null) : SessionInterface
     {
         $key = md5(serialize($uniqueID));
-        if (!static::$instance[$key]) {
+        if (!static::$instances[$key]) {
             $class = get_called_class();
-            static::$instance[$key] = new $class($uniqueID);
+            static::$instances[$key] = new $class($uniqueID);
         }
-        return static::$instance[$key];
+        return static::$instances[$key];
     }
 
     public function userID(string $id = null) : ?string
