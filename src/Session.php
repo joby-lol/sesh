@@ -17,7 +17,7 @@ class Session implements SessionInterface
 {
     use SessionTrait,SessionPublicTrait;
 
-    protected static $instance;
+    protected static $instances = [];
 
     protected $magicNumber = 8;
     protected $destroyAllOnCreate = false;
@@ -34,13 +34,14 @@ class Session implements SessionInterface
 
     protected $regened = false;
 
-    public static function &getInstance() : SessionInterface
+    public static function &getInstance(string $uniqueID = null) : SessionInterface
     {
-        if (!static::$instance) {
+        $key = md5(serialize($uniqueID));
+        if (!static::$instance[$key]) {
             $class = get_called_class();
-            static::$instance = new $class();
+            static::$instance[$key] = new $class($uniqueID);
         }
-        return static::$instance;
+        return static::$instance[$key];
     }
 
     public function userID(string $id = null) : ?string
@@ -60,9 +61,9 @@ class Session implements SessionInterface
         $this->sessionTokenCleanup(true);
     }
 
-    protected function __construct()
+    protected function __construct(string $uniqueID = null)
     {
-        $this->sessionTraitInit();
+        $this->sessionTraitInit($uniqueID);
         if (!$this->session || $this->session['magic_number'] < $this->magicNumber) {
             $this->createSession();
         }
