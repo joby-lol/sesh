@@ -55,6 +55,17 @@ class Session implements SessionInterface
         return $this->session['user_id'];
     }
 
+    public function userSID(string $id = null) : ?string
+    {
+        if ($id) {
+            $this->session['user_sid'] = $id;
+        }
+        if ($id === false) {
+            $this->session['user_sid'] = null;
+        }
+        return $this->session['user_sid'];
+    }
+
     public function deauthorize()
     {
         $this->session['user_id'] = null;

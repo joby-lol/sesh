@@ -6,6 +6,7 @@ interface SessionInterface
 {
     public static function &getInstance() : SessionInterface;
     public function userID(string $id = null) : ?string;
+    public function userSID(string $id = null) : ?string;
     public function deauthorize();
     public function regenerateID();
 
